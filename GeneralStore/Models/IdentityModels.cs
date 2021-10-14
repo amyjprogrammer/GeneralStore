@@ -36,5 +36,7 @@ namespace GeneralStore.Models
         //remember to use enable-migrations
         //add-migration "name"
         //update-database
+
+        public DbSet<Customer> Customers { get; set; }
     }
 }
