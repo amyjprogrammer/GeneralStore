@@ -129,5 +129,19 @@ namespace GeneralStore.Controllers
         }
 
         //Delete
+        [HttpDelete]
+        public async Task<IHttpActionResult> DeleteTransactionById(int id)
+        {
+            var transaction = await _context.Transactions.FindAsync(id);
+            if (transaction == null)
+                return NotFound();
+
+            Product product = await _context.Products.FindAsync(transaction.ProductSKU);
+            product.NumberInStock += transaction.ItemCount;
+
+            _context.Transactions.Remove(transaction);
+
+            return Ok(await _context.SaveChangesAsync());
+        }
     }
 }
