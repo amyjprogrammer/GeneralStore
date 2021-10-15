@@ -38,5 +38,7 @@ namespace GeneralStore.Models
         //update-database
 
         public DbSet<Customer> Customers { get; set; }
+
+        public DbSet<Transaction> Transactions { get; set; }
     }
 }

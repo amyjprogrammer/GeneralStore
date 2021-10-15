@@ -209,6 +209,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\TransactionController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -220,6 +221,10 @@
     <Compile Include="Migrations\202110141952220_Customer.cs" />
     <Compile Include="Migrations\202110141952220_Customer.Designer.cs">
       <DependentUpon>202110141952220_Customer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110151330582_Transactions.cs" />
+    <Compile Include="Migrations\202110151330582_Transactions.Designer.cs">
+      <DependentUpon>202110151330582_Transactions.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -327,6 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110141952220_Customer.resx">
       <DependentUpon>202110141952220_Customer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110151330582_Transactions.resx">
+      <DependentUpon>202110151330582_Transactions.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

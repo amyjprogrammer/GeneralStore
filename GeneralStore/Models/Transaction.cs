@@ -22,18 +22,8 @@ namespace GeneralStore.Models
         public string ProductSKU { get; set; }
         public virtual Product Product { get; set; }
 
-        public int ItemCount
-        {
-            get 
-            {
-                int count = 0;
-                foreach (var item in Product.SKU)
-                {
-                    count = count + item;
-                }
-                return count;
-            }
-        }
+        [Required]
+        public int ItemCount { get; set; }
 
         public DateTime DateOfTransaction { get; set; }
     }
