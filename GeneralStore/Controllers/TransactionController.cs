@@ -92,6 +92,41 @@ namespace GeneralStore.Controllers
         }
 
         //Update
+        [HttpPut]
+        public async Task<IHttpActionResult> UpdateTransactionById([FromUri]int id, [FromBody]Transaction model)
+        {
+            if (model == null)
+                return BadRequest("Please enter some info");
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var transaction = await _context.Transactions.FindAsync(id);
+            if (transaction == null)
+                return NotFound();
+
+            //these would stay the same (wouldn't let them update those)
+            transaction.ProductSKU = model.ProductSKU;
+            transaction.CustomerId = model.CustomerId;
+
+            Product product = await _context.Products.FindAsync(transaction.ProductSKU);
+
+            int newTransactionNum;
+            if(model.ItemCount > transaction.ItemCount)
+            {
+                newTransactionNum = model.ItemCount - transaction.ItemCount;
+                if (product.NumberInStock < newTransactionNum)
+                    return BadRequest("Not enough in stock");
+                product.NumberInStock -= newTransactionNum;
+            }
+            else
+            {
+                newTransactionNum = transaction.ItemCount - model.ItemCount;
+                product.NumberInStock += newTransactionNum;
+            }
+
+            transaction.ItemCount = model.ItemCount;
+            return Ok(await _context.SaveChangesAsync());
+        }
 
         //Delete
     }
